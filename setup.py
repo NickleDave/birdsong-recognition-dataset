@@ -18,8 +18,8 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'koumura'
-DESCRIPTION = 'Functions for working with the data repository from Koumura Okanoya 2016'
-URL = 'https://github.com/NickleDave/evfuncs'
+DESCRIPTION = 'Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165'
+URL = 'https://github.com/NickleDave/koumura'
 EMAIL = 'nicholdav@gmail.com'
 AUTHOR = 'David Nicholson'
 REQUIRES_PYTHON = '>=3.6.0'
