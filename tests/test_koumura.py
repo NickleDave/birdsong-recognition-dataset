@@ -6,9 +6,8 @@ from glob import glob
 import unittest
 
 import numpy as np
-from scipy.io import loadmat
 
-import evfuncs
+import koumura
 
 
 class TestEvfuncs(unittest.TestCase):
@@ -27,10 +26,4 @@ class TestEvfuncs(unittest.TestCase):
         assert False
 
     def test_Sequence(self):
-        assert False
-    
-    def test_Resequencer(self):
-        assert False
-    
-    def test_get_trans_mat(self):
         assert False
