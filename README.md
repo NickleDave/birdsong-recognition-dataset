@@ -33,12 +33,20 @@ and [`songdeck`](https://github.com/NickleDave/songdeck) libraries.
 ### Usage
 
 The main thing that `koumura` gives you is easy access to the 
-annotation, without having to deal with the .xml file format. 
-Using `koumura` with that repository, you can load the `.cbin` audio files ...
+annotation, without having to deal with the .xml file format.
+
+To access the annotation in the `Annotation.xml` files for each bird, 
+use the `parse_xml` function.
 ```Python
->>> np.allclose(onsets, notmat_dict['onsets'])
-True
+>>> from koumura import parse_xml
+>>> seq_list = parse_xml(xml_file='./Bird0/Annotation.xml', concat_seqs_into_songs=False)
+>>> seq_list[0]
+Sequence from 0.wav with position 32000 and length 43168
+>>> seq_list[0].syls[:3]
+[Syllable labeled 0 at position 2240 with length 2688, Syllable labeled 0 at position 8256 with length 2784, Syllable labeled 0 at position 14944 with length 2816]  
 ```
+
+You can also load the annotation for an individual song using
 
 ### Getting Help
 Please feel free to raise an issue here:  
