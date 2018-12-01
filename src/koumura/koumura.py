@@ -21,27 +21,30 @@ import os
 import glob
 import xml.etree.ElementTree as ET
 
-
 import numpy as np
 
 
 class Syllable:
     """Object that represents a syllable.
 
-    Properties
+    Attributes
     ----------
     position : int
         starting sample number ("frame") within .wav file
         *** relative to start of sequence! ***
     length : int
         duration given as number of samples
-    label : char
+    label : str
         text representation of syllable as classified by a human
         or a machine learning algorithm
     """
     def __init__(self, position, length, label):
         if type(position) != int:
             raise ValueError(f'position must be an int, not type {type(position)}')
+        if type(length) != int:
+            raise ValueError(f'length must be an int, not type {type(length)}')
+        if type(label) != str:
+            raise ValueError(f'label must be a string, not type {type(label)}')
         self.position = position
         self.length = length
         self.label = label
@@ -55,9 +58,9 @@ class Syllable:
 class Sequence:
     """Object that represents a sequence of syllables.
 
-    Properties
+    Attributes
     ----------
-    wavFile : string
+    wav_file : string
         file name of .wav file in which sequence occurs
     position : int
         starting sample number within .wav file
@@ -65,37 +68,37 @@ class Sequence:
         duration given as number of samples
     syls : list
         list of syllable objects that make up sequence
-    seqSpect : spectrogram object
+    seq_spect : spectrogram object
     """
-
     def __init__(self, wav_file,position, length, syl_list):
-        self.wavFile = wav_file
+        self.wav_file = wav_file
         self.position = position
         self.length = length
-        self.numSyls = len(syl_list)
+        self.num_syls = len(syl_list)
         self.syls = syl_list
-        self.seqSpect = None
 
     def __repr__(self):
         rep_str = "Sequence from {} with position {} and length {}".format(
-                  self.wavFile,self.position,self.length)
+                  self.wav_file, self.position, self.length)
         return rep_str
 
 
-def parse_xml(xml_file,concat_seqs_into_songs=False):
+def parse_xml(xml_file, concat_seqs_into_songs=False):
     """parses Annotation.xml files.
 
     Parameters
     ----------
-    xml_file : string
+    xml_file : str
         filename of .xml file, e.g. 'Annotation.xml'
-    concat_seqs_into_songs : Boolean
-        if True, concatenate sequences into songs, where each wav file is a
+    concat_seqs_into_songs : bool
+        if True, concatenate sequences into songs, where each .wav file is a
         song. Default is False.
 
     Returns
     -------
     seq_list : list of Sequence objects
+        if concat_seqs_into_songs is True, then each sequence will correspond to one song,
+        i.e., the annotation for one .wav file
     """
 
     tree = ET.ElementTree(file=xml_file)
