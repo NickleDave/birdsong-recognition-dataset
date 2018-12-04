@@ -130,22 +130,22 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
 
     if concat_seqs_into_songs:
         song_list = []
-        curr_wavFile = seq_list[0].wavFile
+        curr_wav_file = seq_list[0].wav_file
         new_seq_obj = seq_list[0]
         for syl in new_seq_obj.syls:
             syl.position += new_seq_obj.position
 
         for seq in seq_list[1:]:
-            if seq.wavFile == curr_wavFile:
+            if seq.wav_file == curr_wav_file:
                 new_seq_obj.length += seq.length
-                new_seq_obj.numSyls += seq.numSyls
+                new_seq_obj.num_syls += seq.num_syls
                 for syl in seq.syls:
                     syl.position += seq.position
                 new_seq_obj.syls += seq.syls
 
             else:
                 song_list.append(new_seq_obj)
-                curr_wavFile = seq.wavFile
+                curr_wav_file = seq.wav_file
                 new_seq_obj = seq
                 for syl in new_seq_obj.syls:
                     syl.position += new_seq_obj.position
@@ -173,14 +173,21 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
         of `wav_file` (if a full path is given) or the
         parent of the current working directory.
     concat_seqs : bool
-        if True, concatenate sequences into one single Sequence, where the .wav file is a
-        song. Default is True.
+        if True, concatenate sequences from the .wav file into one single Sequence.
+        Default is True.
 
     Returns
     -------
     seq_list : list
         of Sequence objects. If concat_seqs is True, a single Sequence object will be
         returned.
+
+    Examples
+    --------
+    >>> from koumura import load_song_annot
+    >>> wav1 = load_song_annot(wav_file='1.wav')
+    >>> print(wav1)                                                                                                  
+    Sequence from 1.wav with position 32000 and length 214176      
     """
     if xml_file is None:
         dirname, songfile = os.path.split(wav_file)
@@ -199,8 +206,8 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
         else:
             xml_file = xml_file[0]
 
-    seq_list = parse_xml(xml_file, concat_seqs_into_songs=concat_seq_into_songs)
-    seq_list = [seq for seq in seq_list if seq.wavFile == wav_file]
+    seq_list = parse_xml(xml_file, concat_seqs_into_songs=concat_seqs)
+    seq_list = [seq for seq in seq_list if seq.wav_file == wav_file]
     if len(seq_list) == 1:
         seq_list = seq_list[0]
     return seq_list
