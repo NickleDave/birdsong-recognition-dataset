@@ -50,7 +50,12 @@ Sequence from 0.wav with position 32000 and length 43168
 Notice that this package preserves the abstraction of the original code,
 where syllables and sequences of syllables are represented as objects.
 This can be helpful if you are trying to replicate functionality from 
-that code. If you are using the annotation to work with the dataset for
+that code.  
+**Importantly, each song is broken up into a number of "sequences".** 
+You can set the flag `concat_seqs_into_songs` to `True` if you want 
+`parse_xml` to concatenate sequences by song (.wav file), so that each 
+Sequence is actually all the sequences from one song.  
+If you are using the annotation to work with the dataset for
 some other purpose, you may find it more convenient to work with some 
 other format. For that, please check out the 
 [`conbirt`](https://github.com/NickleDave/conbirt)
