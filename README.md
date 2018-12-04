@@ -17,10 +17,11 @@ PloS one 11.7 (2016): e0159188.
 The code for the network can be found here:  
 <https://github.com/takuya-koumura/birdsong-recognition>
 
-The original code was released under the GNU license:
+The original code was released under the GNU license:  
 <https://github.com/takuya-koumura/birdsong-recognition/blob/master/LICENSE>
 
-The `koumura` module is used in the 
+The `koumura` module is used with the [`conbirt`](https://github.com/NickleDave/conbirt)
+ package to make the repository a dataset available in the 
 [`hybrid-vocal-classifier`](https://hybrid-vocal-classifier.readthedocs.io/en/latest/) 
 and [`songdeck`](https://github.com/NickleDave/songdeck) libraries.
 
@@ -52,8 +53,8 @@ This can be helpful if you are trying to replicate functionality from
 that code. If you are using the annotation to work with the dataset for
 some other purpose, you may find it more convenient to work with some 
 other format. For that, please check out the 
-[`conbirt'](https://github.com/NickleDave/conbirt)
-library, which converts this annotation format and others to a 
+[`conbirt`](https://github.com/NickleDave/conbirt)
+package, which converts this annotation format and others to a 
 tidy comma-separated value format.
 
 The `koumura` package also provides a convenience function to load the annotation 
