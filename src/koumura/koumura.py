@@ -99,8 +99,13 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
     seq_list : list of Sequence objects
         if concat_seqs_into_songs is True, then each sequence will correspond to one song,
         i.e., the annotation for one .wav file
-    """
 
+    Examples
+    --------
+    >>> seq_list = parse_xml(xml_file='./Bird0/Annotation.xml', concat_seqs_into_songs=False)
+    >>> seq_list[0]
+    Sequence from 0.wav with position 32000 and length 43168
+    """
     tree = ET.ElementTree(file=xml_file)
     seq_list = []
     for seq in tree.iter(tag='Sequence'):
@@ -153,45 +158,46 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
         return seq_list
 
 
-def load_song_annot(filename, annot_file=None):
+def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
     """load annotation for specific song from Koumura dataset
 
     Parameters
     ----------
-    filename : str
+    wav_file : str
         filename of .wav file from Koumura dataset
-    annotation_file : str
-        absolute path to 'Annotation.xml' file that
-        contains annotation for 'songfile'.
+    xml_file : str
+        absolute path to Annotation.xml file that
+        contains annotation for `wav_file`.
         Default is None, in which case the function
-        searchs for Annotation.xml in the parent directory
-        of songfile (if a full path is given) or the
+        searches for Annotation.xml in the parent directory
+        of `wav_file` (if a full path is given) or the
         parent of the current working directory.
+    concat_seqs : bool
+        if True, concatenate sequences into one single Sequence, where the .wav file is a
+        song. Default is True.
 
     Returns
     -------
-    songfile_dict : dict
-        with keys onsets, offsets, and labels
+    seq : a Sequence object
     """
-
-    if annot_file is None:
-        dirname, songfile = os.path.split(filename)
+    if xml_file is None:
+        dirname, songfile = os.path.split(wav_file)
         if dirname == '':
-            annot_file = glob.glob('../Annotation.xml')
+            xml_file = glob.glob('../Annotation.xml')
         else:
-            annot_file = glob.glob(os.path.join(dirname, '../Annotation.xml'))
+            xml_file = glob.glob(os.path.join(dirname, '../Annotation.xml'))
 
-        if len(annot_file) < 1:
-            raise ValueError('Can\'t open {}, Annotation.xml file not found in parent of current directory'.
-                             format(songfile))
-        elif len(annot_file) > 1:
+        if len(xml_file) < 1:
+            raise ValueError(f'Can\'t open {songfile}, Annotation.xml file not found in '
+                             f'parent directory {dirname}')
+        elif len(xml_file) > 1:
             raise ValueError('Can\'t open {}, found more than one Annotation.xml file '
                              'in parent of current directory'.
                              format(songfile))
         else:
-            annot_file = annot_file[0]
+            xml_file = xml_file[0]
 
-    seq_list = parse_xml(annot_file, concat_seqs_into_songs=True)
+    seq_list = parse_xml(xml_file, concat_seqs_into_songs=concat_seq_into_songs)
     wav_files = [seq.wavFile for seq in seq_list]
     ind = wav_files.index(songfile)
     this_seq = seq_list[ind]
@@ -199,7 +205,7 @@ def load_song_annot(filename, annot_file=None):
     offsets_Hz = np.asarray([syl.position + syl.length for syl in this_seq.syls])
     labels = [syl.label for syl in this_seq.syls]
     annotation_dict = {
-        'filename': filename, 
+        'filename': wav_file, 
         'onsets_Hz': onsets_Hz,
         'offsets_Hz': offsets_Hz,
         'onsets_s': None,
