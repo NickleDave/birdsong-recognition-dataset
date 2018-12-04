@@ -5,9 +5,6 @@ Functions for working with data from the following repository:
 The repository contains .wav files of Bengalese finch song from ten birds
 and annotation for the songs in .xml files.
 
-It's called `koumura` because that's the first author's last name, and 
-because I am too lazy to type `PyBirdsongRecognition`.
-
 This repository provides a great resource, and was used to benchmark 
 a sliding window-based neural network for segmenting and labeling 
 the elements of birdsong, as described in the following paper:  
@@ -26,6 +23,9 @@ The original code was released under the GNU license:
 The `koumura` module is used in the 
 [`hybrid-vocal-classifier`](https://hybrid-vocal-classifier.readthedocs.io/en/latest/) 
 and [`songdeck`](https://github.com/NickleDave/songdeck) libraries.
+
+It's called `koumura` because that's the last name of the first author
+on the paper, and because I am too lazy to type `PyBirdsongRecognition`.
 
 ### Installation
 `$ pip install koumura`
@@ -46,7 +46,25 @@ Sequence from 0.wav with position 32000 and length 43168
 [Syllable labeled 0 at position 2240 with length 2688, Syllable labeled 0 at position 8256 with length 2784, Syllable labeled 0 at position 14944 with length 2816]  
 ```
 
-You can also load the annotation for an individual song using
+Notice that this package preserves the abstraction of the original code,
+where syllables and sequences of syllables are represented as objects.
+This can be helpful if you are trying to replicate functionality from 
+that code. If you are using the annotation to work with the dataset for
+some other purpose, you may find it more convenient to work with some 
+other format. For that, please check out the 
+[`conbirt'](https://github.com/NickleDave/conbirt)
+library, which converts this annotation format and others to a 
+tidy comma-separated value format.
+
+The `koumura` package also provides a convenience function to load the annotation 
+for an individual song, `load_song_annot`. This is basically a wrapper
+around `parse_xml` that filters out the songs you don't want.
+```Python
+>>> from koumura import load_song_annot
+>>> wav1 = load_song_annot(wav_file='1.wav')
+>>> print(wav1)                                                                                                  
+Sequence from 1.wav with position 32000 and length 214176  
+```
 
 ### Getting Help
 Please feel free to raise an issue here:  
