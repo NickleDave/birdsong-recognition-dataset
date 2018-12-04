@@ -178,7 +178,9 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
 
     Returns
     -------
-    seq : a Sequence object
+    seq_list : list
+        of Sequence objects. If concat_seqs is True, a single Sequence object will be
+        returned.
     """
     if xml_file is None:
         dirname, songfile = os.path.split(wav_file)
@@ -198,21 +200,10 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
             xml_file = xml_file[0]
 
     seq_list = parse_xml(xml_file, concat_seqs_into_songs=concat_seq_into_songs)
-    wav_files = [seq.wavFile for seq in seq_list]
-    ind = wav_files.index(songfile)
-    this_seq = seq_list[ind]
-    onsets_Hz = np.asarray([syl.position for syl in this_seq.syls])
-    offsets_Hz = np.asarray([syl.position + syl.length for syl in this_seq.syls])
-    labels = [syl.label for syl in this_seq.syls]
-    annotation_dict = {
-        'filename': wav_file, 
-        'onsets_Hz': onsets_Hz,
-        'offsets_Hz': offsets_Hz,
-        'onsets_s': None,
-        'offsets_s': None,
-        'labels': labels
-    }
-    return annotation_dict
+    seq_list = [seq for seq in seq_list if seq.wavFile == wav_file]
+    if len(seq_list) == 1:
+        seq_list = seq_list[0]
+    return seq_list
 
 
 def determine_unique_labels(annotation_file):
