@@ -40,11 +40,11 @@ class Syllable:
     """
     def __init__(self, position, length, label):
         if type(position) != int:
-            raise ValueError(f'position must be an int, not type {type(position)}')
+            raise TypeError(f'position must be an int, not type {type(position)}')
         if type(length) != int:
-            raise ValueError(f'length must be an int, not type {type(length)}')
+            raise TypeError(f'length must be an int, not type {type(length)}')
         if type(label) != str:
-            raise ValueError(f'label must be a string, not type {type(label)}')
+            raise TypeError(f'label must be a string, not type {type(label)}')
         self.position = position
         self.length = length
         self.label = label
