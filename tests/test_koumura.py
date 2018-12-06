@@ -10,7 +10,7 @@ import numpy as np
 import koumura
 
 
-class TestEvfuncs(unittest.TestCase):
+class TestKoumura(unittest.TestCase):
 
     def setUp(self):
         self.test_data_dir = os.path.join(
@@ -19,11 +19,26 @@ class TestEvfuncs(unittest.TestCase):
             'Bird0',
         )
 
-    def test_parsexml(self):
-        assert False
-
     def test_Syllable(self):
-        assert False
+        syl = koumura.Syllable(position=32000, length=3200, label='0')
+        for attr in ['position', 'length', 'label']:
+            self.assertTrue(hasattr(syl, attr))
+        with self.assertRaises(ValueError):
+            # position should be an int
+            syl = koumura.Syllable(position=1.5, length=3200, label='0')
+        with self.assertRaises(ValueError):
+            # length should be an int
+            syl = koumura.Syllable(position=32500, length=2709.3, label='0')
+        with self.assertRaises(ValueError):
+            # length should bde an int
+            syl = koumura.Syllable(position=32500, length=2709.3, label='0')
 
     def test_Sequence(self):
+        assert False
+
+
+    def test_parsexml(self):
+        assert False
+    
+    def test_load_song_annot(self):
         assert False
