@@ -70,7 +70,18 @@ class Sequence:
         list of syllable objects that make up sequence
     seq_spect : spectrogram object
     """
-    def __init__(self, wav_file,position, length, syl_list):
+    def __init__(self, wav_file, position, length, syl_list):
+        if type(wav_file) != str:
+            raise TypeError(f'wav_file must be a string, not type {type(wav_file)}')
+        if type(position) != int:
+            raise TypeError(f'position must be an int, not type {type(position)}')
+        if type(length) != int:
+            raise TypeError(f'length must be an int, not type {type(length)}')
+        if type(syl_list) != list:
+            raise TypeError(f'syl_list must be a list, not type {type(syl_list)}')
+        if not all([type(syl) == Syllable for syl in syl_list]):
+            raise TypeError('not all elements in syl list are of type Syllable: '
+                            f'{syl_list}')
         self.wav_file = wav_file
         self.position = position
         self.length = length
