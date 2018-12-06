@@ -57,7 +57,14 @@ class TestKoumura(unittest.TestCase):
             seq = koumura.Sequence(position=32500, length=2709.3, label='0')
 
     def test_parsexml(self):
-        assert False
+        xml_file = os.path.join(self.test_data_dir, 'Annotation.xml')
+        seq_list_no_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=False)
+        self.assertTrue(all([type(seq) == koumura.Sequence 
+                             for seq in seq_list_no_concat]))
+        seq_list_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=True)
+        self.assertTrue(all([type(seq) == koumura.Sequence 
+                        for seq in seq_list_concat]))
+        self.assertTrue(seq_list_no_concat != seq_list_concat)
 
     def test_load_song_annot(self):
         assert False
