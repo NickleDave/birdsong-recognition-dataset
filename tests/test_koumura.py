@@ -23,22 +23,41 @@ class TestKoumura(unittest.TestCase):
         syl = koumura.Syllable(position=32000, length=3200, label='0')
         for attr in ['position', 'length', 'label']:
             self.assertTrue(hasattr(syl, attr))
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             # position should be an int
             syl = koumura.Syllable(position=1.5, length=3200, label='0')
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             # length should be an int
             syl = koumura.Syllable(position=32500, length=2709.3, label='0')
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             # length should bde an int
             syl = koumura.Syllable(position=32500, length=2709.3, label='0')
 
     def test_Sequence(self):
-        assert False
+        syl1 = koumura.Syllable(position=32000, length=3200, label='0')
+        syl2 = koumura.Syllable(position=64000, length=3200, label='0')
+        syl3 = koumura.Syllable(position=96000, length=3200, label='0')
+        syl_list = [syl1, syl2, syl3]
+        wav_file = 'imaginary.wav'
+        seq = koumura.Sequence(wav_file=wav_file, position=16000, length=120000,
+                               syl_list=syl_list)
+        for attr in ['wav_file', 'position', 'length', 'num_syls', 'syls']:
+            self.assertTrue(hasattr(seq, attr))
 
+        with self.assertRaises(TypeError):
+            # position should be an int
+            seq = koumura.Sequence(wav_file=wav_file, position=1.5, length=3200,
+                                   syl_list=syl_list)
+        with self.assertRaises(TypeError):
+            # length should be an int
+            seq = koumura.Sequence(wav_file=wav_file, position=32500, length=2709.3,
+                                   syl_list=syl_list)
+        with self.assertRaises(TypeError):
+            # length should bde an int
+            seq = koumura.Sequence(position=32500, length=2709.3, label='0')
 
     def test_parsexml(self):
         assert False
-    
+
     def test_load_song_annot(self):
         assert False
