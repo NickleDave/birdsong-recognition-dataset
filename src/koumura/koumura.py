@@ -94,7 +94,8 @@ class Sequence:
         return rep_str
 
 
-def parse_xml(xml_file, concat_seqs_into_songs=False):
+def parse_xml(xml_file, concat_seqs_into_songs=False, return_wav_abspath=False,
+              wav_abspath=None):
     """parses Annotation.xml files.
 
     Parameters
@@ -104,6 +105,19 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
     concat_seqs_into_songs : bool
         if True, concatenate sequences into songs, where each .wav file is a
         song. Default is False.
+    return_wav_abspath : bool
+        if True, change value for the wav_file field of sequences to absolute path,
+        instead of just the .wav file name (without a path). This option is
+        useful if you need to specify the path to data on your system.
+        Default is False, in which the .wav file name is returned as written in the
+        Annotation.xml file.
+    wav_abspath : str
+        Path to directory in which .wav files are found. Specify this if you have changed
+        the structure of the repository so that the .wav files are no longer in a 
+        directory named Wave that's in the same parent directory as the Annotation.xml
+        file. Default is None, in which case the structure just described is assumed.
+
+    (The last two parameters are used by the conbirt library.)
 
     Returns
     -------
@@ -117,10 +131,27 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
     >>> seq_list[0]
     Sequence from 0.wav with position 32000 and length 43168
     """
+    if return_wav_abspath:
+        if wav_abspath:
+            if not os.path.isdir(wav_abspath):
+                raise NotADirectoryError(f'return_wav_abspath is True but {wav_abspath} '
+                                         'is not a valid directory.')
     tree = ET.ElementTree(file=xml_file)
     seq_list = []
     for seq in tree.iter(tag='Sequence'):
         wav_file = seq.find('WaveFileName').text
+        if return_wav_abspath:
+            if wav_abspath:
+                wav_file = os.path.join(wav_abspath, wav_file)
+            else:
+                # assume .wav file is in Wave directory that's a child to wherever
+                # Annotation.xml file is kept (since this is how the repository is
+                # structured)
+                xml_dirname = os.path.dirname(xml_file)
+                wav_file = os.path.join(xml_dirname, 'Wave', wav_file)
+            if not os.path.isfile(wav_file):
+                raise FileNotFoundError('File {wav_file} is not found')
+
         position = int(seq.find('Position').text)
         length = int(seq.find('Length').text)
         syl_list = []
@@ -129,14 +160,14 @@ def parse_xml(xml_file, concat_seqs_into_songs=False):
             syl_length = int(syl.find('Length').text)
             label = syl.find('Label').text
 
-            syl_obj = Syllable(position = syl_position,
-                               length = syl_length,
-                               label = label)
+            syl_obj = Syllable(position=syl_position,
+                               length=syl_length,
+                               label=label)
             syl_list.append(syl_obj)
-        seq_obj = Sequence(wav_file = wav_file,
-                           position = position,
-                           length = length,
-                           syl_list = syl_list)
+        seq_obj = Sequence(wav_file=wav_file,
+                           position=position,
+                           length=length,
+                           syl_list=syl_list)
         seq_list.append(seq_obj)
 
     if concat_seqs_into_songs:

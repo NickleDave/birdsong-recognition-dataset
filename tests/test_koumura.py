@@ -38,7 +38,7 @@ class TestKoumura(unittest.TestCase):
         syl2 = koumura.Syllable(position=64000, length=3200, label='0')
         syl3 = koumura.Syllable(position=96000, length=3200, label='0')
         syl_list = [syl1, syl2, syl3]
-        wav_file = 'imaginary.wav'
+        wav_file = os.path.join(self.test_data_dir, 'Wave', '0.wav')
         seq = koumura.Sequence(wav_file=wav_file, position=16000, length=120000,
                                syl_list=syl_list)
         for attr in ['wav_file', 'position', 'length', 'num_syls', 'syls']:
@@ -58,13 +58,40 @@ class TestKoumura(unittest.TestCase):
 
     def test_parsexml(self):
         xml_file = os.path.join(self.test_data_dir, 'Annotation.xml')
-        seq_list_no_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=False)
+        seq_list_no_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=False,
+                                               return_wav_abspath=False, wav_abspath=None)
         self.assertTrue(all([type(seq) == koumura.Sequence 
                              for seq in seq_list_no_concat]))
-        seq_list_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=True)
+        seq_list_concat = koumura.parse_xml(xml_file, concat_seqs_into_songs=True,
+                                               return_wav_abspath=False, wav_abspath=None)
         self.assertTrue(all([type(seq) == koumura.Sequence 
                         for seq in seq_list_concat]))
         self.assertTrue(seq_list_no_concat != seq_list_concat)
 
+        # test return_wav_abspath works with wav_abpsath=None
+        seq_list_abspath = koumura.parse_xml(xml_file, concat_seqs_into_songs=True,
+                                             return_wav_abspath=True, wav_abspath=None)
+        for seq in seq_list_abspath:
+            self.assertTrue(os.path.isfile(seq.wav_file))
+
+        # test return_wav_abspath works with wav_abpsath specified
+        wav_abpath = os.path.join(self.test_data_dir, 'Wave')
+        seq_list_abspath = koumura.parse_xml(xml_file, concat_seqs_into_songs=True,
+                                             return_wav_abspath=True, 
+                                             wav_abspath=wav_abpath)
+        for seq in seq_list_abspath:
+            self.assertTrue(os.path.isfile(seq.wav_file))
+
     def test_load_song_annot(self):
-        assert False
+        xml_file = os.path.join(self.test_data_dir, 'Annotation.xml')
+        seq_list = koumura.parse_xml(xml_file, concat_seqs_into_songs=True)
+
+        wav_files = glob(os.path.join(self.test_data_dir,
+                                      'Wave', '*.wav'))
+        for wav_file in wav_files:
+            seq = koumura.load_song_annot(wav_file, xml_file=xml_file, concat_seqs=True)
+            self.assertTrue(type(seq) == koumura.Sequence)
+            wav_file_without_path = os.path.split(wav_file)[1]
+            wav_ind = np.asarray([wav_file_without_path == seq.wav_file 
+                                  for seq in seq_list])
+
