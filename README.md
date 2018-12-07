@@ -78,3 +78,7 @@ https://github.com/NickleDave/koumura/issues
 
 ### License
 [BSD License](./LICENSE).
+
+### Citation
+If you use this module, please cite the DOI:
+[![DOI](https://zenodo.org/badge/159952839.svg)](https://zenodo.org/badge/latestdoi/159952839)
