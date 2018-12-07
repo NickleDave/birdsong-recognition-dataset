@@ -200,20 +200,20 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
     >>> print(wav1)
     Sequence from 1.wav with position 32000 and length 214176
     """
+    dirname, wav_file = os.path.split(wav_file)
     if xml_file is None:
-        dirname, songfile = os.path.split(wav_file)
         if dirname == '':
             xml_file = glob.glob('../Annotation.xml')
         else:
             xml_file = glob.glob(os.path.join(dirname, '../Annotation.xml'))
 
         if len(xml_file) < 1:
-            raise ValueError(f'Can\'t open {songfile}, Annotation.xml file not found in '
+            raise ValueError(f'Can\'t open {wav_file}, Annotation.xml file not found in '
                              f'parent directory {dirname}')
         elif len(xml_file) > 1:
             raise ValueError('Can\'t open {}, found more than one Annotation.xml file '
                              'in parent of current directory'.
-                             format(songfile))
+                             format(wav_file))
         else:
             xml_file = xml_file[0]
 
