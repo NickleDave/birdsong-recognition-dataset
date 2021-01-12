@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/NickleDave/koumura.svg?branch=master)](https://travis-ci.com/NickleDave/koumura)
+[![DOI](https://zenodo.org/badge/159952839.svg)](https://zenodo.org/badge/latestdoi/159952839)
+
 # koumura
 Functions for working with data from the following repository:
 <https://figshare.com/articles/BirdsongRecognition/3470165>  
@@ -5,8 +8,8 @@ Functions for working with data from the following repository:
 The repository contains .wav files of Bengalese finch song from ten birds
 and annotation for the songs in .xml files.
 
-This repository provides a great resource, and was used to benchmark 
-a sliding window-based neural network for segmenting and labeling 
+This repository provides a great resource, and was used to benchmark
+a sliding window-based neural network for segmenting and labeling
 the elements of birdsong, as described in the following paper:  
 Koumura, Takuya, and Kazuo Okanoya.  
 "Automatic recognition of element classes and boundaries in the birdsong
@@ -21,8 +24,8 @@ The original code was released under the GNU license:
 <https://github.com/takuya-koumura/birdsong-recognition/blob/master/LICENSE>
 
 The `koumura` module is used with the [`conbirt`](https://github.com/NickleDave/conbirt)
- package to make the repository a dataset available in the 
-[`hybrid-vocal-classifier`](https://hybrid-vocal-classifier.readthedocs.io/en/latest/) 
+ package to make the repository a dataset available in the
+[`hybrid-vocal-classifier`](https://hybrid-vocal-classifier.readthedocs.io/en/latest/)
 and [`songdeck`](https://github.com/NickleDave/songdeck) libraries.
 
 It's called `koumura` because that's the last name of the first author
@@ -33,10 +36,10 @@ on the paper, and because I am too lazy to type `PyBirdsongRecognition`.
 
 ### Usage
 
-The main thing that `koumura` gives you is easy access to the 
+The main thing that `koumura` gives you is easy access to the
 annotation, without having to deal with the .xml file format.
 
-To access the annotation in the `Annotation.xml` files for each bird, 
+To access the annotation in the `Annotation.xml` files for each bird,
 use the `parse_xml` function.
 ```Python
 >>> from koumura import parse_xml
@@ -49,20 +52,20 @@ Sequence from 0.wav with position 32000 and length 43168
 
 Notice that this package preserves the abstraction of the original code,
 where syllables and sequences of syllables are represented as objects.
-This can be helpful if you are trying to replicate functionality from 
+This can be helpful if you are trying to replicate functionality from
 that code.  
-**Importantly, each song is broken up into a number of "sequences".** 
-You can set the flag `concat_seqs_into_songs` to `True` if you want 
-`parse_xml` to concatenate sequences by song (.wav file), so that each 
+**Importantly, each song is broken up into a number of "sequences".**
+You can set the flag `concat_seqs_into_songs` to `True` if you want
+`parse_xml` to concatenate sequences by song (.wav file), so that each
 Sequence is actually all the sequences from one song.  
 If you are using the annotation to work with the dataset for
-some other purpose, you may find it more convenient to work with some 
-other format. For that, please check out the 
+some other purpose, you may find it more convenient to work with some
+other format. For that, please check out the
 [`conbirt`](https://github.com/NickleDave/conbirt)
-package, which converts this annotation format and others to a 
+package, which converts this annotation format and others to a
 tidy comma-separated value format.
 
-The `koumura` package also provides a convenience function to load the annotation 
+The `koumura` package also provides a convenience function to load the annotation
 for an individual song, `load_song_annot`. This is basically a wrapper
 around `parse_xml` that filters out the songs you don't want.
 ```Python
@@ -80,5 +83,5 @@ https://github.com/NickleDave/koumura/issues
 [BSD License](./LICENSE).
 
 ### Citation
-If you use this module, please cite the DOI:
+If you use this package, please cite the DOI:
 [![DOI](https://zenodo.org/badge/159952839.svg)](https://zenodo.org/badge/latestdoi/159952839)
