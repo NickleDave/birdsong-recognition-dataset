@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.20
 ### Added
 - add build status badge to README
   [b13045b](https://github.com/NickleDave/koumura/commit/b13045beaa286159dacd469db3e717470757b054)

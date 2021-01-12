@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "koumura"
-version = "0.1.1a1"
+version = "0.2.0"
 description = "Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165"
 authors = ["David Nicholson <nickledave@users.noreply.github.com>"]
 license = "BSD"
