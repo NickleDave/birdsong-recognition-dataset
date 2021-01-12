@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/NickleDave/koumura.svg?branch=master)](https://travis-ci.com/NickleDave/koumura)
 [![DOI](https://zenodo.org/badge/159952839.svg)](https://zenodo.org/badge/latestdoi/159952839)
-
+[![PyPI version](https://badge.fury.io/py/koumura.svg)](https://badge.fury.io/py/koumura)
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)'
 # koumura
 Functions for working with data from the following repository:
 <https://figshare.com/articles/BirdsongRecognition/3470165>  
