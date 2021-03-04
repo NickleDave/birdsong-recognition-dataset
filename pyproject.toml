@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "koumura"
-version = "0.2.0"
+version = "0.2.1"
 description = "Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165"
 authors = ["David Nicholson <nickledave@users.noreply.github.com>"]
 license = "BSD"
@@ -10,6 +10,8 @@ classifiers = [
     'Programming Language :: Python',
     'Programming Language :: Python :: 3',
     'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: Implementation :: CPython',
 ]
 

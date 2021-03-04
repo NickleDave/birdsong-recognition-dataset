@@ -3,7 +3,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.20
+## 0.2.1
+### Changed
+- switch to using GitHub Actions for continuous integration
+  [309a367](https://github.com/NickleDave/koumura/commit/309a3673bd6c52b12970388a556b694704260373)
+
+### Fixed
+- change dependencies and required Python so they are not pinned to major version
+  [3709eda](https://github.com/NickleDave/koumura/commit/3709eda3358429be3bb757d2b52a17f92848a225)
+
+
+## 0.2.0
 ### Added
 - add build status badge to README
   [b13045b](https://github.com/NickleDave/koumura/commit/b13045beaa286159dacd469db3e717470757b054)
