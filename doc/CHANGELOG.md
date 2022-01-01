@@ -9,6 +9,11 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
   [#10](https://github.com/NickleDave/koumura/pull/10)  
 - raise minimum required Python to 3.7
   [12](https://github.com/NickleDave/koumura/pull/12)  
+- change package and library name, from `koumura` 
+  to `birdsong-recognition-dataset` (distribution package name) 
+  and `birdsongrec` (import package name)
+  [13](https://github.com/NickleDave/koumura/pull/13).
+  Fixes [#11](https://github.com/NickleDave/birdsong-recognition-dataset/issues/11).
 
 ## 0.2.1.post1 -- 2021-03-04
 ### Changed
