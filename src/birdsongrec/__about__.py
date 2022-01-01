@@ -18,7 +18,7 @@ try:
 except NameError:
     base_dir = None
 
-__title__ = "koumura"
+__title__ = "birdsongrec"
 __summary__ = "Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165"
 __uri__ = "https://github.com/NickleDave/koumura"
 

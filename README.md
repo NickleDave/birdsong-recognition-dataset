@@ -1,9 +1,9 @@
-![Build Status](https://github.com/NickleDave/koumura/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/NickleDave/birdsong-recognition-dataset/actions/workflows/ci.yml/badge.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4584210.svg)](https://doi.org/10.5281/zenodo.4584210)
-![PyPI version](https://badge.fury.io/py/koumura.svg)
+![PyPI version](https://badge.fury.io/py/birdsong-recognition-dataset.svg)
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
-# koumura
-Functions for working with data from the following repository:  
+# birdsong-recognition-dataset
+Python utility for working with data from the following repository:  
 <https://figshare.com/articles/BirdsongRecognition/3470165>  
 
 The repository contains .wav files of Bengalese finch song from ten birds
@@ -19,31 +19,28 @@ PloS one 11.7 (2016): e0159188.
 <https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0159188>  
 
 The code for the network can be found here:  
-<https://github.com/takuya-koumura/birdsong-recognition>
+<https://github.com/cycentum/birdsong-recognition>
 
 The original code was released under the GNU license:  
-<https://github.com/takuya-koumura/birdsong-recognition/blob/master/LICENSE>
+<https://github.com/cycentum/birdsong-recognition/blob/master/LICENSE>
 
-The `koumura` module is used with the [`crowsetta`](https://github.com/NickleDave/crowsetta)
+The `birdsongrec` module is used with the [`crowsetta`](https://github.com/NickleDave/crowsetta)
  package to make the repository a dataset available in the
 [`hybrid-vocal-classifier`](https://hybrid-vocal-classifier.readthedocs.io/en/latest/)
 and [`vak`](https://github.com/NickleDave/vak) libraries.
 
-It's called `koumura` because that's the last name of the first author
-on the paper, and because I am too lazy to type `PyBirdsongRecognition`.
-
 ### Installation
-`$ pip install koumura`
+`$ pip install birdsong-recognition-dataset`
 
 ### Usage
 
-The main thing that `koumura` gives you is easy access to the
+The main thing that `birdsongrec` gives you is easy access to the
 annotation, without having to deal with the .xml file format.
 
 To access the annotation in the `Annotation.xml` files for each bird,
 use the `parse_xml` function.
 ```Python
->>> from koumura import parse_xml
+>>> from birdsongrec import parse_xml
 >>> seq_list = parse_xml(xml_file='./Bird0/Annotation.xml', concat_seqs_into_songs=False)
 >>> seq_list[0]
 Sequence from 0.wav with position 32000 and length 43168
@@ -66,11 +63,11 @@ other format. For that, please check out the
 tool, that helps with building datasets of annotated vocalizations
 in a way that's annotation-format agnostic.
 
-The `koumura` package also provides a convenience function to load the annotation
+The `birdsongrec` package also provides a convenience function to load the annotation
 for an individual song, `load_song_annot`. This is basically a wrapper
 around `parse_xml` that filters out the songs you don't want.
 ```Python
->>> from koumura import load_song_annot
+>>> from birdsongrec import load_song_annot
 >>> wav1 = load_song_annot(wav_file='1.wav')
 >>> print(wav1)                                                                                                  
 Sequence from 1.wav with position 32000 and length 214176  
@@ -78,7 +75,7 @@ Sequence from 1.wav with position 32000 and length 214176
 
 ### Getting Help
 Please feel free to raise an issue here:  
-https://github.com/NickleDave/koumura/issues
+https://github.com/NickleDave/birdsong-recognition-dataset/issues
 
 ### License
 [BSD License](./LICENSE).

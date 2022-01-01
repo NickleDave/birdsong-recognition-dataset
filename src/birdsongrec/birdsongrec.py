@@ -226,7 +226,7 @@ def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
 
     Examples
     --------
-    >>> from koumura import load_song_annot
+    >>> from birdsongrec import load_song_annot
     >>> wav1 = load_song_annot(wav_file='1.wav')
     >>> print(wav1)
     Sequence from 1.wav with position 32000 and length 214176
