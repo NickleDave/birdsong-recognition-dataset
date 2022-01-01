@@ -10,7 +10,7 @@ from .__about__ import (
     __version__,
 )
 
-from .koumura import parse_xml, load_song_annot, get_trans_mat
-from .koumura import Syllable, Sequence
-from .koumura import Resequencer
+from .birdsongrec import parse_xml, load_song_annot, get_trans_mat
+from .birdsongrec import Syllable, Sequence
+from .birdsongrec import Resequencer
 
