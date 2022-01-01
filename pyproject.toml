@@ -32,7 +32,7 @@ test = [
 ]
 
 [project.urls]
-Source = "https://github.com/NickleDave/koumura"
+Source = "https://github.com/NickleDave/birdsong-recognition-dataset"
 
 [tool.flit.sdist]
 exclude = [
