@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Changed
 - switch to using `flit` for development
   [#10](https://github.com/NickleDave/koumura/pull/10)  
+- raise minimum required Python to 3.7
+  [12](https://github.com/NickleDave/koumura/pull/12)  
 
 ## 0.2.1.post1 -- 2021-03-04
 ### Changed
