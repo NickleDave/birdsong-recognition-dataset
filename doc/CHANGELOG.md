@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Changed
+- switch to using `flit` for development
+  [#10](https://github.com/NickleDave/koumura/pull/10)  
+
 ## 0.2.1.post1 -- 2021-03-04
 ### Changed
 - add metadata to pyproject.toml so that README is used as "long description" 
