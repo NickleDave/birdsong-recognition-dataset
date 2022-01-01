@@ -5,7 +5,7 @@ build-backend = "flit_core.buildapi"
 [project]
 name = "birdsong-recognition-dataset"
 description = "Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165"
-version = "0.2.1.post1"
+version = "0.3.0"
 authors = [
     {name = "David Nicholson", email = "nickledave@users.noreply.github.com"}
 ]

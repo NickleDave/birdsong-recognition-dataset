@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## 0.3.0 -- 2021-12-31
 ### Changed
 - switch to using `flit` for development
   [#10](https://github.com/NickleDave/koumura/pull/10)  
