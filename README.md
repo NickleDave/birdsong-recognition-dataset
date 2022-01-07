@@ -30,7 +30,17 @@ The `birdsongrec` module is used with the [`crowsetta`](https://github.com/Nickl
 and [`vak`](https://github.com/NickleDave/vak) libraries.
 
 ### Installation
-`$ pip install birdsong-recognition-dataset`
+#### with `pip`
+
+```console
+$ pip install birdsong-recognition-dataset
+```
+
+#### with `conda`
+
+```console
+$ conda install birdsong-recognition-dataset -c conda-forge
+```
 
 ### Usage
 
