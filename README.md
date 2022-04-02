@@ -4,7 +4,9 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 # birdsong-recognition-dataset
 Python utility for working with data from the following repository:  
-<https://figshare.com/articles/BirdsongRecognition/3470165>  
+Koumura, T. (2016). BirdsongRecognition (Version 1). figshare.  
+<https://doi.org/10.6084/m9.figshare.3470165.v1>  
+<https://figshare.com/articles/BirdsongRecognition/3470165>
 
 The repository contains .wav files of Bengalese finch song from ten birds
 and annotation for the songs in .xml files.
