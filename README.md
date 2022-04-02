@@ -49,6 +49,11 @@ $ conda install birdsong-recognition-dataset -c conda-forge
 The main thing that `birdsongrec` gives you is easy access to the
 annotation, without having to deal with the .xml file format.
 
+This format is schematized in [this XML schema file](./doc/xsd/AnnotationSchema.xsd),
+adapted [from the original](https://github.com/cycentum/birdsong-recognition/blob/master/xsd/AnnotationSchema.xsd) 
+under the [GNU license](https://github.com/cycentum/birdsong-recognition/blob/master/LICENSE)
+(file is unchanged except for formatting for readability).
+
 To access the annotation in the `Annotation.xml` files for each bird,
 use the `parse_xml` function.
 ```Python
