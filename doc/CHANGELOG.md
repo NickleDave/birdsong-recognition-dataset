@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.1 -- 2022-04-02
+### Added
+- add full citation to dataset, including DOI + url
+  [7eb131f](https://github.com/NickleDave/birdsong-recognition-dataset/commit/7eb131fdea53836772d040d07ce7b93cf6d7e545)
+  [72b58b3](https://github.com/NickleDave/birdsong-recognition-dataset/commit/72b58b3fa3d42f7466ad19d7b3b596a78c88bd76)
+
 ## 0.3.0 -- 2021-12-31
 ### Changed
 - switch to using `flit` for development
