@@ -1,6 +1,6 @@
 """
-Python functions to facilitate interacting with the dataset from Koumura and
-Okanoya 2016 [1].
+Python functions to facilitate interacting with the dataset [1]_ from Koumura and
+Okanoya 2016 [2]_.
 
 The original code was released under the GNU license:
 https://github.com/takuya-koumura/birdsong-recognition/blob/master/LICENSE
@@ -11,9 +11,11 @@ birdsong-recognition/src/computation/ViterbiSequencer.java
 
 (The Python implementation is not a direct translation of the Java code)
 
-data: https://figshare.com/articles/BirdsongRecognition/3470165
+[1] Koumura, T. (2016). BirdsongRecognition (Version 1). figshare.
+https://doi.org/10.6084/m9.figshare.3470165.v1
+https://figshare.com/articles/BirdsongRecognition/3470165
 
-[1] Koumura T, Okanoya K (2016) Automatic Recognition of Element Classes and
+[2] Koumura T, Okanoya K (2016) Automatic Recognition of Element Classes and
 Boundaries in the Birdsong with Variable Sequences. PLoS ONE 11(7): e0159188.
 doi:10.1371/journal.pone.0159188
 """
@@ -116,8 +118,6 @@ def parse_xml(xml_file, concat_seqs_into_songs=False, return_wav_abspath=False,
         the structure of the repository so that the .wav files are no longer in a 
         directory named Wave that's in the same parent directory as the Annotation.xml
         file. Default is None, in which case the structure just described is assumed.
-
-    (The last two parameters are used by the conbirt library.)
 
     Returns
     -------
