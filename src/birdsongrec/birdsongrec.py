@@ -98,7 +98,10 @@ class Sequence:
 
 def parse_xml(xml_file, concat_seqs_into_songs=False, return_wav_abspath=False,
               wav_abspath=None):
-    """parses Annotation.xml files.
+    """parses Annotation.xml files from the BirdsongRecognition dataset:
+    Koumura, T. (2016). BirdsongRecognition (Version 1). figshare.
+    https://doi.org/10.6084/m9.figshare.3470165.v1
+    https://figshare.com/articles/BirdsongRecognition/3470165
 
     Parameters
     ----------
@@ -130,6 +133,11 @@ def parse_xml(xml_file, concat_seqs_into_songs=False, return_wav_abspath=False,
     >>> seq_list = parse_xml(xml_file='./Bird0/Annotation.xml', concat_seqs_into_songs=False)
     >>> seq_list[0]
     Sequence from 0.wav with position 32000 and length 43168
+
+    Notes
+    -----
+    Parses files that adhere to this XML Schema document:
+    https://github.com/NickleDave/birdsong-recognition-dataset/blob/main/doc/xsd/AnnotationSchema.xsd
     """
     if return_wav_abspath:
         if wav_abspath:
@@ -201,7 +209,10 @@ def parse_xml(xml_file, concat_seqs_into_songs=False, return_wav_abspath=False,
 
 
 def load_song_annot(wav_file, xml_file=None, concat_seqs=True):
-    """load annotation for specific song from Koumura dataset
+    """load annotation for specific song from BirdsongRecognition dataset:
+    Koumura, T. (2016). BirdsongRecognition (Version 1). figshare.
+    https://doi.org/10.6084/m9.figshare.3470165.v1
+    https://figshare.com/articles/BirdsongRecognition/3470165
 
     Parameters
     ----------
