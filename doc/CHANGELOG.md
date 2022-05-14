@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+### Changed
+- require Python >= 3.8, 
+  to adhere to [NEP-29](https://numpy.org/neps/nep-0029-deprecation_policy.html)
+  [#16](https://github.com/NickleDave/koumura/pull/16).
+  Fixes [#15](https://github.com/NickleDave/birdsong-recognition-dataset/issues/15).
+
 ## 0.3.1 -- 2022-04-02
 ### Added
 - add full citation to dataset, including DOI + url
