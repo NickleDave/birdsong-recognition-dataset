@@ -22,7 +22,7 @@ __title__ = "birdsongrec"
 __summary__ = "Functions for working with this data repository: https://figshare.com/articles/BirdsongRecognition/3470165"
 __uri__ = "https://github.com/NickleDave/koumura"
 
-__version__ = '0.3.2'
+__version__ = '0.3.2.post1'
 
 if base_dir is not None and os.path.exists(os.path.join(base_dir, ".commit")):
     with open(os.path.join(base_dir, ".commit")) as fp:
