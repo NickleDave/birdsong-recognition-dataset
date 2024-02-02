@@ -1,3 +1,10 @@
+[![Project Status: Unsupported – The project has reached a stable, usable state but the author(s) have ceased all work on it. A new maintainer may be desired.](https://www.repostatus.org/badges/latest/unsupported.svg)](https://www.repostatus.org/#unsupported)
+
+This project is no longer actively maintained, 
+although the code uses core, stable functions from Python, Numpy, and SciPy, so it is likely to work.
+There is an updated version of the core code in this package in crowsetta: https://crowsetta.readthedocs.io
+If you need to load the annotations from this dataset, please use that instead.
+
 ![Build Status](https://github.com/NickleDave/birdsong-recognition-dataset/actions/workflows/ci.yml/badge.svg)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4584210.svg)](https://doi.org/10.5281/zenodo.4584210)
 ![PyPI version](https://badge.fury.io/py/birdsong-recognition-dataset.svg)
